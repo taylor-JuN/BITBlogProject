@@ -14,7 +14,7 @@
 	<insert id="makeblog" parameterType="userVO">
 		<![CDATA[
 			INSERT INTO blog(userNo, blogTitle, logoFile)
-			VALUES( #{userNo}, #{userName}, null)
+			VALUES( #{userNo}, concat(#{userName}, '의 블로그 입니다'), null)
 		]]>
 	</insert>
 	
@@ -29,7 +29,7 @@
 	
 	<select id = "selectUserByID" parameterType="String" resultType="userVO">
 		<![CDATA[
-		SELECT userNo, userName, id
+		SELECT userNo, userName, id, password
 		FROM users
 		WHERE id = #{value}
 		]]>

@@ -66,27 +66,3 @@ function checkID(idfield, url){
 	
 }
 
-function change(catefield, url){
-	console.log(catefield)
-	$.ajax({
-		url: url,
-		type: "GET",
-		dataType: "JSON",
-		data: {
-			no : catefield
-		},
-		success: function(result){
-			console.log("Result : ", result);
-			console.log("Result : ", result.data[0].cateNo, result.data[0].regDate);
-		},
-		error: function(xhr, status, error){
-			console.error("Status: ", status);
-			console.error("Response: ", xhr);
-			console.error("error: ", error);
-			
-			idfield.form.check.value="t";
-		}
-	});
-	
-	
-}

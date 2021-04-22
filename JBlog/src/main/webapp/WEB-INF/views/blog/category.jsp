@@ -7,12 +7,12 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
+<link rel="stylesheet" href="<c:url value="/assets/css/myblogmain.css"/>" />
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+
 <body>
-	<ul>
-		<li> <a href = "<c:url value="basic" />">기본 설정</a></li>
-		<li> <a href = "<c:url value="category" />">카테고리</a></li>
-		<li> <a href = "<c:url value="write" />">글 작성</a></li>
-	</ul>
+	<jsp:include page="/WEB-INF/views/includes/myblogheader.jsp"></jsp:include>
+	<jsp:include page="/WEB-INF/views/includes/myblognav.jsp"></jsp:include>
 
 					<table border="1" width="640">
 						
@@ -39,17 +39,19 @@
 						
 					</table>
 					
-					<h1> 새로운 카테고리 추가</h1>
-					<form method = "POST">
-						<label for = "cateName">카테고리명</label>
-						<input id = "cateName" name ="cateName" type = "text">
-						
-						<label for = "description">셜명</label>
-						<input id = "description" name ="description" type = "text">
-						
-						<input id = "userNo" name = "userNo" type = "hidden" value="${authUser.getUserNo() }">
-						<input type="submit" value="카테고리 추가">
-					</form>
+					<h3> 새로운 카테고리 추가</h3>
+					<div>
+						<form method = "POST">
+							<label style = "width : 10%" for = "cateName">카테고리명</label>
+							<input style = "width : 20%" id = "cateName" name ="cateName" type = "text">
+							<br>
+							<label style = "width : 10%" for = "description">설명</label>
+							<input style = "width : 20%" id = "description" name ="description" type = "text">
+							<br>
+							<input id = "userNo" name = "userNo" type = "hidden" value="${authUser.getUserNo() }">
+							<input class = "btn btn-secondary" type="submit" value="카테고리 추가">
+						</form>
+					</div>
 					
 
 

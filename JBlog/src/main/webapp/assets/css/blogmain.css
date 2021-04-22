@@ -1,0 +1,6 @@
+@CHARSET "UTF-8";
+
+form{ margin-top : 5px; text-align:center ; font-size : 1.2em;}
+input[type=text] { height:50px; width : 300px; border-size : 10; border-color:blue; border-radius : 10px}
+input[type=submit] {height:50px; width : 80px; font-size : 1.2em ;}
+input[type=radio] { padding-top : 300px; width:18px; height:18px; margin : 3px; border : 1.5px;}

@@ -7,12 +7,13 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
+<link rel="stylesheet" href="<c:url value="/assets/css/myblogmain.css"/>" />
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+
 <body>
-	<ul>
-		<li> <a href = "<c:url value="basic" />">기본 설정</a></li>
-		<li> <a href = "<c:url value="category" />">카테고리</a></li>
-		<li> <a href = "<c:url value="write" />">글 작성</a></li>
-	</ul>
+<jsp:include page="/WEB-INF/views/includes/myblogheader.jsp"></jsp:include>
+<jsp:include page="/WEB-INF/views/includes/myblognav.jsp"></jsp:include>
+	
 	
 	<h1>블로그 제목</h1>
 	<h2>${vo.getBlogTitle()}</h2>
@@ -23,9 +24,7 @@
 			<input id="blogTitle" name="blogTitle" type="text" value="${vo.getBlogTitle()}">
 			<input id="userNo" name="userNo" type="hidden" value="${vo.getUserNo() }">
 			<input type="submit" value="등록">
-		
 		</form>
-
 
 </body>
 </html>

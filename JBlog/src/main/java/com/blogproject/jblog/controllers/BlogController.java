@@ -16,10 +16,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
-
-import com.blogproject.jblog.repository.BlogDAO;
 import com.blogproject.jblog.services.BlogService;
+import com.blogproject.jblog.services.FileUploadService;
 import com.blogproject.jblog.vo.BlogVO;
 import com.blogproject.jblog.vo.CategoryVO;
 import com.blogproject.jblog.vo.PostVO;
@@ -28,6 +28,9 @@ import com.blogproject.jblog.vo.UserVO;
 @RequestMapping("/")
 @Controller
 public class BlogController {
+	
+	@Autowired
+	FileUploadService fileUploadService;
 	
 	@Autowired
 	BlogService blogServiceImple;
@@ -92,7 +95,7 @@ public class BlogController {
 		System.out.println("------------"+updatedVO.getUserNo());
 		BlogVO vo = blogServiceImple.getBlogAdmin(updatedVO.getUserNo());
 		vo.setBlogTitle(updatedVO.getBlogTitle());
-		//vo.setContent(updatedVO.getContent());
+		
 		
 		boolean success = blogServiceImple.update(vo);
 
@@ -103,6 +106,8 @@ public class BlogController {
 	@RequestMapping("{sitename}/admin/category")
 	public String adminCategory(@PathVariable("sitename") String id, HttpSession session, Model model) {
 		UserVO authUser = (UserVO)session.getAttribute("authUser");
+		BlogVO vo = blogServiceImple.getBlogAdmin(id);
+		model.addAttribute("vo",vo);
 		List<CategoryVO> list = blogServiceImple.getCate(authUser.getUserNo());
 		model.addAttribute("list", list);
 		
@@ -127,7 +132,8 @@ public class BlogController {
 	public String writeForm(@PathVariable("sitename") String id, HttpSession session, Model model) {
 		//	사용자를 체크해서 로그인 안한 사용자는 쓰기 기능을 제한
 		UserVO authUser = (UserVO)session.getAttribute("authUser");
-		
+		BlogVO vo = blogServiceImple.getBlogAdmin(id);
+		model.addAttribute("vo",vo);
 		//	로그인 여부 체크
 		if (authUser == null) {
 			//	로그인 안한 사용자

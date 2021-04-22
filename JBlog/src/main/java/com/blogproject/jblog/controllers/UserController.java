@@ -55,13 +55,6 @@ public class UserController {
 		return "users/joinsuccess";
 	}
 	
-	@ResponseBody //컨버터 작동 
-	@RequestMapping("/show")
-	public Object showUserByEmail(@RequestParam String id) {
-		UserVO vo = userServiceImple.getUser(id);
-		return vo;
-	}
-	
 	@ResponseBody
 	@RequestMapping("/idcheck")
 	public Object existID(
@@ -76,6 +69,8 @@ public class UserController {
 		return map;
 	}
 	
+
+	
 	@RequestMapping(value = "/login", method=RequestMethod.GET)
 	public String loginform() {
 		
@@ -84,14 +79,17 @@ public class UserController {
 	
 	
 	@RequestMapping(value = "/login", method=RequestMethod.POST)
-	public String loginAction(@RequestParam String id, @RequestParam String password, HttpSession session) {
+	public String loginAction(@RequestParam String id, @RequestParam String password, HttpSession session,Model model) {
 		
 		UserVO authUser = userServiceImple.getUser(id, password);
 		if(authUser != null) {
 			session.setAttribute("authUser", authUser);
 			return "redirect:/";
-		}else {
-			return "redirect:/users/login";
+		}
+		else {
+			model.addAttribute("message", "로그인 실패");
+			model.addAttribute("message2", "아이디/패스워드를 확인해 주세요");
+			return "/users/loginform";
 		}
 	}
 	

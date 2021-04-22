@@ -8,39 +8,36 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
+<link rel="stylesheet" href="<c:url value="/assets/css/myblogmain.css"/>" />
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+
+
+
 <body>
-	<ul>
-		<li> <a href = "<c:url value="basic" />">기본 설정</a></li>
-		<li> <a href = "<c:url value="category" />">카테고리</a></li>
-		<li> <a href = "<c:url value="write" />">글 작성</a></li>
-	</ul>
+<jsp:include page="/WEB-INF/views/includes/myblogheader.jsp"></jsp:include>
+<jsp:include page="/WEB-INF/views/includes/myblognav.jsp"></jsp:include>
 	<form method="post">
-		<table border="1" width="640">
-			<tr>
-				<td>제목</td>
-				<td><input type="text" name="postTitle" value=""></td>
-			</tr>
-			<tr>
-				<td>내용</td>
-				<td>
-					<textarea id="postContent" name="postContent"></textarea>
-				</td>
-			</tr>
-			
+		
+		
+				<label style = "width : 5%" for = "postTitle">제목</label>
+				<input style = "width : 380px" type="text" name="postTitle" value="">
+				
 				<select id = "cateNo" name="cateNo">
 					<c:forEach items="${list}" var="cateVO">
 				   		 <option value="${cateVO.getCateNo() }">${cateVO.getCateName() }</option>
 				    </c:forEach>
 				</select>
+				
+				<br>
+				<label style = "width : 5%" for="postContent">내용</label>
+				<textarea style = "width : 450px; height : 500px;" name="postContent"></textarea>
+				<br>
+				<label style = "width : 5%"></label>
+				<input style = "width : 450px" class = "btn btn-secondary" type="submit" value="등록">
+				
+
 			
-			
-			<tr>
-				<td colspan="2">
-					<a href="<c:url value="/blog/" />">취소</a>
-					<input type="submit" value="등록">
-				</td>	
-			</tr>
-		</table>
 	</form>
+	
 </body>
 </html>

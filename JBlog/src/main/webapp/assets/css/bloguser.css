@@ -1,0 +1,27 @@
+form{ margin-top : 5px; text-align:center ; font-size : 1.2em; border : solid grey;}
+label{ text-align : left; display : block;}
+
+#join-form	{
+	width:400px;
+	padding:10px;
+	border:1px solid grey;
+	border-radius: 10px;
+	margin:50px auto;
+}
+
+#login-form	{
+	width:400px;
+	padding:10px;
+	border:1px solid grey;
+	border-radius: 10px;
+	margin:50px auto;
+}
+
+input[type="text"] {width : 380px;}
+input[type="password"] {width : 380px;}
+input[type="submit"] {width : 380px; font-size : 1.1em ;}
+
+#checkid{
+	display : inlineblock;
+	width : 330px;
+}
