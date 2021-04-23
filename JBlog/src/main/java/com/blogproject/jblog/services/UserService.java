@@ -8,5 +8,6 @@ public interface UserService {
 	public boolean makeCategory(UserVO vo);
 	public UserVO getUser(String id, String password);
 	public UserVO getUser(String id);
+	public String selectUserName(Long no);
 }
 

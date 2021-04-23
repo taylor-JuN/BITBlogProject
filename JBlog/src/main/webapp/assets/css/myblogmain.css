@@ -18,12 +18,14 @@ ul { text-align: right }
 li { display:inline-block}
 
 #myblognavbar ul, ol, li			{ list-style-type: none; margin : 10px; font-size : 1.2em} 
-#myblognavbar ul { text-align: left }
-#myblognavbar li { display:inline-block}
+#myblognavbar ul { text-align: left; color : black }
+#myblognavbar li { display:inline-block; color : black}
 
-#myblognavbar a:link { text-decoration: none; } 
+
+#myblognavbar a{text-decoration: none; color : black}
+#myblognavbar a:link { text-decoration: none; color : black} 
 #myblognavbar a:visited { text-decoration: none; color : black}
-#myblognavbar a:hover { text-decoration: none;}
+#myblognavbar a:hover { text-decoration: none; color : black}
 
 html, body{
 	width : 100%;
@@ -33,6 +35,10 @@ html, body{
 	padding-top : 30px;
 }
 
+#category a:link { text-decoration: none; color : black; font-weight :bold} 
+#category a:visited { text-decoration: none; color : black; font-weight :bold}
+#category a:hover { text-decoration: none;color : black; font-weight :bold}
+
 #recentpost{
 	width : 80%;
 	float : left;
@@ -40,9 +46,9 @@ html, body{
 }
 #category{
 	width : 20%;
-	height:50%;
+	padding : 10px;
 	float: right;
-	background-color : red;
+	background-color: #f2f2f2;
 	
 }
 #postbycategory{

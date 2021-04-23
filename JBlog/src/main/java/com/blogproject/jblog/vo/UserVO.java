@@ -1,6 +1,6 @@
 package com.blogproject.jblog.vo;
 
-import java.util.Date;
+import java.sql.Date;
 
 public class UserVO {
 	private Long userNo;

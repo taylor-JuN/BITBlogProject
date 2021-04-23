@@ -14,7 +14,7 @@
 						<li> <a href = "<c:url value="/users/logout" />">로그아웃</a></li>
 					</c:when>
 					<c:otherwise>	
-						<li> <a href = "<c:url value="${authUser.getId() }/admin/basic" />">내블로그 관리</a></li>
+						<li> <a href = "<c:url value="/${authUser.getId() }/admin/basic" />">내블로그 관리</a></li>
 						<li> <a href = "<c:url value="/users/logout" />">로그아웃</a></li>
 					</c:otherwise>
 				</c:choose>

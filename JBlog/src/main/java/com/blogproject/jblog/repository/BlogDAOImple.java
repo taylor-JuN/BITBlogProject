@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.blogproject.jblog.vo.BlogVO;
 import com.blogproject.jblog.vo.CategoryVO;
+import com.blogproject.jblog.vo.CommentVO;
 import com.blogproject.jblog.vo.PostVO;
 import com.blogproject.jblog.vo.UserVO;
 
@@ -52,6 +53,14 @@ public class BlogDAOImple implements BlogDAO {
 		int updatedCount = sqlSession.update("blog.update", vo);
 		return updatedCount;
 	}
+	
+	@Override
+	public int updateLogo(BlogVO vo) {
+		int updatedCount = sqlSession.update("blog.updateLogo", vo);
+		return updatedCount;
+	}
+	
+	
 	@Override
 	public int insertCate(CategoryVO vo) {
 		int insertedCount = sqlSession.insert("blog.insertCate", vo);
@@ -61,6 +70,31 @@ public class BlogDAOImple implements BlogDAO {
 	public int write(PostVO vo) {
 		int writedCount = sqlSession.insert("blog.write", vo);
 		return writedCount;
+	}
+	@Override
+	public Long getPostCount(Long no) {
+		long count = sqlSession.selectOne("blog.getPostCount", no);
+		return count;
+	}
+	@Override
+	public int deleteCate(Long no) {
+		int deletedCount = sqlSession.update("blog.deleteCate", no);
+		return deletedCount;
+	}
+	@Override
+	public int insertComment(CommentVO vo) {
+		int insertedCount = sqlSession.insert("blog.insertComment", vo);
+		return insertedCount;
+	}
+	@Override
+	public int deleteComment(Long no) {
+		int deletedCount = sqlSession.delete("blog.deleteComment", no);
+		return deletedCount;
+	}
+	@Override
+	public List<CommentVO> getComment(Long no) {
+		List<CommentVO> list = sqlSession.selectList("blog.getComment", no);
+		return list;
 	}
 	
 	

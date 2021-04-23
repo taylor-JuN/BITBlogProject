@@ -46,4 +46,10 @@ public class UserServiceImple implements UserService {
 		return vo;
 	}
 
+	@Override
+	public String selectUserName(Long no) {
+		String name = userDAOImple.selectUserName(no);
+		return name;
+	}
+
 }

@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import com.blogproject.jblog.repository.BlogDAO;
 import com.blogproject.jblog.vo.BlogVO;
 import com.blogproject.jblog.vo.CategoryVO;
+import com.blogproject.jblog.vo.CommentVO;
 import com.blogproject.jblog.vo.PostVO;
 import com.blogproject.jblog.vo.UserVO;
 
@@ -52,6 +53,13 @@ public class BlogServiceImple implements BlogService {
 		int updatedCount = blogDAOImple.update(vo);
 		return updatedCount == 1;
 	}
+	
+	@Override
+	public boolean updateLogo(BlogVO vo) {
+		int updatedCount = blogDAOImple.updateLogo(vo);
+		return updatedCount == 1;
+	}
+	
 	@Override
 	public boolean insertCate(CategoryVO vo) {
 		int insertedCount = blogDAOImple.insertCate(vo);
@@ -61,6 +69,33 @@ public class BlogServiceImple implements BlogService {
 	public boolean write(PostVO vo) {
 		int writedCount = blogDAOImple.write(vo);
 		return writedCount == 1;
+	}
+	@Override
+	public Long getPostCount(Long no) {
+		Long count = blogDAOImple.getPostCount(no);
+		return count;
+	}
+	@Override
+	public boolean deleteCate(Long no) {
+		int deletedCount = blogDAOImple.deleteCate(no);
+		return deletedCount == 1;
+	}
+	@Override
+	public boolean insertComment(CommentVO vo) {
+		int insertedCount = blogDAOImple.insertComment(vo);
+		return insertedCount ==1;
+	}
+	
+	@Override
+	public boolean deleteComment(Long no) {
+		int deletedCount = blogDAOImple.deleteComment(no);
+		return deletedCount == 1;
+	}
+	
+	@Override
+	public List<CommentVO> getComment(Long no) {
+		List<CommentVO> list = blogDAOImple.getComment(no);
+		return list;
 	}
 	
 	

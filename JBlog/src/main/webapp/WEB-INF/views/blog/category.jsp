@@ -26,15 +26,30 @@
 						</tr>
 						<!-- Loop -->
 						<c:forEach items="${list }" var="vo">
-						<tr>
-							<td>${vo.getCateNo() }</td>
-							<td>${vo.getCateName() }</td>
-							<td>포스트수 미정</td>
-							<td>${vo.getDescription() }</td>
-							<td>${vo.getRegDate() }</td>
-							<td><a href="">삭제</a></td>
-						</tr>
+							<tr>
+								<td>${vo.getCateNo() }</td>
+								<td>${vo.getCateName() }</td>
+								<td>${vo.getPostCount() }</td>
+								<td>${vo.getDescription() }</td>
+								<td>${vo.getRegDate() }</td>
+								
+								<td> 
+									<c:choose>
+										<c:when test = "${vo.getPostCount() ==0 }">
+										<form method="post" action="<c:url value="delete"/>">
+										<input type='hidden' id = "no" name="no" value="${vo.getCateNo()}">
+											<div style = "text-align:center"><input style = "width : 100%" class ="btn btn-danger" type="submit" value="삭제"></div>
+										</form>
+										</c:when>
+										<c:otherwise>
+											<div style = "text-align:center"> <button style = "width : 100%" class ="btn btn-warning" onclick="alert('삭제할 수 없습니다.')">X</button></div>
+										</c:otherwise>
+									</c:choose>
+								
+								</td>
+							</tr>
 						</c:forEach>
+						
 						<!-- /Loop -->
 						
 					</table>

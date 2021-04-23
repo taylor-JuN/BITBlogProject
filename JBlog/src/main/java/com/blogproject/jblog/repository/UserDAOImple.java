@@ -69,6 +69,12 @@ public class UserDAOImple implements UserDAO {
 		System.out.println("selectuserid" + vo);
 		return vo;
 	}
+
+	@Override
+	public String selectUserName(Long no) {
+		String name = sqlSession.selectOne("users.selectUserByNo", no);
+		return name;
+	}
 	
 	
 }

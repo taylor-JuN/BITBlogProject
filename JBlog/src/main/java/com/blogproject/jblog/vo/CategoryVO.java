@@ -1,6 +1,6 @@
 package com.blogproject.jblog.vo;
 
-import java.util.Date;
+import java.sql.Date;
 
 public class CategoryVO {
 	private Long cateNo;
@@ -8,6 +8,7 @@ public class CategoryVO {
 	private String cateName;
 	private String description;
 	private Date regDate;
+	private Long postCount;
 	public Long getCateNo() {
 		return cateNo;
 	}
@@ -38,6 +39,14 @@ public class CategoryVO {
 	public void setRegDate(Date regDate) {
 		this.regDate = regDate;
 	}
+	
+	public Long getPostCount() {
+		return postCount;
+	}
+	public void setPostCount(Long postCount) {
+		this.postCount = postCount;
+	}
+	
 	@Override
 	public String toString() {
 		return "CategoryVO [cateNo=" + cateNo + ", userNo=" + userNo + ", cateName=" + cateName + ", description="

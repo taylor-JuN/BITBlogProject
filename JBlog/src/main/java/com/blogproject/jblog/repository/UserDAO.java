@@ -8,5 +8,7 @@ public interface UserDAO {
 	public UserVO selectUser(String id);
 	public int makeBlog(UserVO vo);
 	public int makeCategory(UserVO vo);
+	
+	public String selectUserName(Long no);
 
 }

@@ -13,20 +13,27 @@
 	
 	<select id="getPost" parameterType="Long" resultType="postVO">
 		<![CDATA[
-			SELECT postTitle, postContent, post.regDate as regDate, post.cateNo
+			SELECT postTitle, postContent, post.regDate as regDate, post.cateNo, post.postNo
 			FROM post, category
 			WHERE category.userNo = ${value} AND post.cateNo = category.cateNo
 			ORDER BY postNo DESC
 		]]>
 	</select>
 	
-	
+	<select id="getPostCount" parameterType="Long" resultType ="Long">
+		<![CDATA[
+			SELECT COUNT(postTitle)
+			FROM post
+			WHERE cateNo = #{value}
+		]]>
+	</select>
 	
 	<select id="selectCategory" parameterType = "Long" resultType = "categoryVO">
 		<![CDATA[
-			SELECT cateName, userNo ,cateNo, description, regDate
+			SELECT cateName, userNo ,cateNo, description, regDate as regDate
 			FROM category
 			WHERE userNo = #{value}
+			ORDER BY cateNo DESC
 		]]>
 	</select>
 	
@@ -51,7 +58,7 @@
 	<update id="update" parameterType="blogVO">
 		<![CDATA[
 			UPDATE blog
-			SET blogTitle=#{blogTitle}
+			SET blogTitle=#{blogTitle}, logoFile = #{logoFile}
 			WHERE userNo = #{userNo}
 		]]>
 	</update>
@@ -63,12 +70,45 @@
 		]]>
 	</insert>
 	
+	<delete id = "deleteCate" parameterType = "Long">
+		<![CDATA[
+			DELETE
+			FROM category
+			WHERE cateNo = #{value}
+		]]>
+	</delete>
+	
 	<insert id="write" parameterType="postVO">
 		<![CDATA[
 			INSERT INTO post
 			VALUES(SEQ_PoST_NO.NEXTVAL, #{cateNo}, #{postTitle}, #{postContent}, sysdate)
 		]]>
 	</insert>
+	
+	
+	<insert id ="insertComment" parameterType = "CommentVO">
+		<![CDATA[
+			INSERT INTO comments
+			VALUES (SEQ_COMMENTS_NO.NEXTVAL, #{postNo},#{userNo}, #{cmtContent}, sysdate)
+		]]>
+	</insert>
+	
+	<delete id ="deleteComment" parameterType = "Long">
+		<![CDATA[
+			DELETE
+			FROM comments
+			WHERE cmtNo = #{value}
+		]]>
+	</delete>
+	
+	<select id="getComment" parameterType = "Long" resultType = "commentVO">
+		<![CDATA[
+			SELECT userNo, cmtContent, regDate, cmtNo
+			FROM comments
+			WHERE postNo = #{value}
+		]]>
+	</select>
+	
 	
 </mapper>
 	
