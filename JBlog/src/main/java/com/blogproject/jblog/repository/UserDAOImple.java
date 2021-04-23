@@ -18,7 +18,7 @@ public class UserDAOImple implements UserDAO {
 	@Autowired
 	SqlSession sqlSession;
 	
-	@Transactional
+	
 	@Override
 	public int insert(UserVO vo) {
 		int insertedCount = 0;
