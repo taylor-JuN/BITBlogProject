@@ -35,16 +35,16 @@ public class UserController {
 	
 	@RequestMapping(value="/join", method = RequestMethod.POST)
 	public String joinAction(@ModelAttribute UserVO userVO) {
-		System.out.println("form 전송된 데이터 : " + userVO);
+		
 		boolean success = userServiceImple.join(userVO);
 		if(success) {
-			System.out.println("가입 성공!");
+			
 			UserVO vo = userServiceImple.getUser(userVO.getId());
 			userServiceImple.makeBlog(vo);
 			userServiceImple.makeCategory(vo);
 			return "redirect:/users/joinsuccess/";
 		}else {
-			System.err.println("가입 실패..");
+			
 			return "redirect:/users/";
 		}
 	}

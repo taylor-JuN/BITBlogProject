@@ -13,8 +13,7 @@ public class GlobalExceptionHandler extends RuntimeException{
 	@ResponseStatus()
 	@ExceptionHandler(ControllerException.class)
 	public ModelAndView handleContorllerException(ControllerException e) {
-		System.err.println("------------");
-		System.err.println("controllerAdvice에 의한 error handling");
+		
 		e.printStackTrace();
 		
 		ModelAndView mav = new ModelAndView();

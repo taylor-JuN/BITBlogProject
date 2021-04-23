@@ -72,7 +72,7 @@ public class BlogController {
 		model.addAttribute("cateThingsList", list);
 		
 		
-		//	로그인 한 사용자 -> 작성 폼으로 포워드
+
 		return "blog/home";
 	}
 	
@@ -234,19 +234,19 @@ public class BlogController {
 	
 	@RequestMapping(value="{sitename}/admin/write", method=RequestMethod.GET)
 	public String writeForm(@PathVariable("sitename") String id, HttpSession session, Model model) {
-		//	사용자를 체크해서 로그인 안한 사용자는 쓰기 기능을 제한
+		
 		UserVO authUser = (UserVO)session.getAttribute("authUser");
 		BlogVO vo = blogServiceImple.getBlogAdmin(id);
 		model.addAttribute("vo",vo);
-		//	로그인 여부 체크
+		
 		if (authUser == null) {
-			//	로그인 안한 사용자
+		
 			return "redirect:/";
 		}
 		
 		List<CategoryVO> list = blogServiceImple.getCate(authUser.getUserNo());
 		model.addAttribute("list", list);
-		//	로그인 한 사용자 -> 작성 폼으로 포워드
+		
 		return "blog/write";
 	}
 	
