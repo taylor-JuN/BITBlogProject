@@ -24,12 +24,10 @@ public class UserDAOImple implements UserDAO {
 		int insertedCount = 0;
 		
 		try {
-			insertedCount = sqlSession.insert("users.insert", vo);
-			
-			System.out.println("sqlSession : " + insertedCount);
-			
+			insertedCount = sqlSession.insert("users.insert", vo);	
+
 		}catch(Exception e) {
-			System.err.println("exception : " + e.getMessage());
+			
 			throw new UserDAOException("join exception");
 		}
 		
@@ -39,7 +37,12 @@ public class UserDAOImple implements UserDAO {
 	@Override
 	public int makeBlog(UserVO vo) {
 		int insertedCount =0;
-		insertedCount = sqlSession.insert("users.makeblog", vo);
+		
+		try {
+			insertedCount = sqlSession.insert("users.makeblog", vo);
+		}catch(Exception e) {
+			throw new UserDAOException("makeBlog exception");
+		}
 		
 		return insertedCount;
 	}
@@ -47,8 +50,12 @@ public class UserDAOImple implements UserDAO {
 	@Override
 	public int makeCategory(UserVO vo) {
 		int insertedCount = 0;
-		insertedCount = sqlSession.insert("users.makecategory", vo);
 		
+		try {
+			insertedCount = sqlSession.insert("users.makecategory", vo);
+		}catch(Exception e){
+			throw new UserDAOException("makeCate exception");
+		}
 		return insertedCount;
 	}
 
@@ -58,21 +65,40 @@ public class UserDAOImple implements UserDAO {
 		userMap.put("id", id);
 		userMap.put("password", password);
 		
-		UserVO vo = sqlSession.selectOne("users.selectUserByIDAndPassword", userMap);
-		System.out.println("selectuserid and pass" + vo);
+		UserVO vo = null;
+		
+		try {
+			vo = sqlSession.selectOne("users.selectUserByIDAndPassword", userMap);
+		}catch(Exception e){
+			throw new UserDAOException("selectUser By id and password exception");
+		}
+		
 		return vo;
+		
+		
 	}
 
 	@Override
 	public UserVO selectUser(String id) {
-		UserVO vo = sqlSession.selectOne("users.selectUserByID", id);
-		System.out.println("selectuserid" + vo);
+		UserVO vo = null; 
+				
+		try {
+			vo = sqlSession.selectOne("users.selectUserByID", id);
+		}catch(Exception e){
+			throw new UserDAOException("selectUser By ID exception");
+		}	
+		
 		return vo;
 	}
 
 	@Override
 	public String selectUserName(Long no) {
-		String name = sqlSession.selectOne("users.selectUserByNo", no);
+		String name = "";
+		try {
+			name = sqlSession.selectOne("users.selectUserByNo", no);
+		}catch(Exception e){
+			throw new UserDAOException("selectUserName exception");
+		}	
 		return name;
 	}
 	
